@@ -69,4 +69,4 @@ Please describe the feature you've added on your email back to us
 1. add `username: fundit-exam, email: andrey@novellofinancial.com ` as collaborators to your imported repo.
 2. send the repo's URL back to the email you got from us. Describe your extra touch (part 4), and any general notes you may have. Can be anything from challenges to something you feel was not done perfect, to something you're specially proud of.
 
-<iframe src="https://giphy.com/embed/l49JHz7kJvl6MCj3G" width="480" height="450" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+## ![good luck](https://media.giphy.com/media/12XDYvMJNcmLgQ/giphy.gif)
