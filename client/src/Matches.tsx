@@ -1,5 +1,6 @@
 import React from "react";
 import { Match } from "./api";
+
 export const Matches = ({
   matches,
   search,
@@ -13,6 +14,15 @@ export const Matches = ({
       t.borrower.user.lastName.toLowerCase()
     ).includes(search.toLowerCase())
   );
+
+  const cerditStatus = (score: number) => {
+    if (score >= 679) {
+      return 'A'
+    } else if (score < 579) {
+      return 'C'
+    }
+    return 'B'
+  }
 
   return (
     <ul className="matches">
@@ -34,6 +44,9 @@ export const Matches = ({
               <p className="userDate">
                 <b>Balance: </b> {match.borrower.financeData.balance}{" "}
                 {match.borrower.financeData.currency}
+              </p>
+              <p className="userDate">
+                <b>Credit score: </b> {cerditStatus(match.borrower.creditScore)}
               </p>
             </div>
           </div>
