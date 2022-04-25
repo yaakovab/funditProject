@@ -54,6 +54,10 @@ export const Matches = ({
                 </p>
               </div>
             </div>
+            <div>
+              <button>Approve</button>
+              <button>Decline</button>
+            </div>
             <footer>
               <div className="meta-data">
                 Created At {new Date(match.creationTime).toLocaleString()}
