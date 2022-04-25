@@ -7,7 +7,7 @@ const app = express();
 
 const PORT = 8888;
 
-const PAGE_SIZE = 5;
+// const PAGE_SIZE = 5;
 
 app.use(bodyParser.json());
 
@@ -23,14 +23,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/match", (req, res) => {
-  const page = req.query.page || 1;
+  // const page = req.query.page || 1;
 
-  const paginatedData = tempData.slice(
-    (Number(page) - 1) * PAGE_SIZE,
-    Number(page) * PAGE_SIZE
-  );
+  // const paginatedData = tempData.slice(
+  //   (Number(page) - 1) * PAGE_SIZE,
+  //   Number(page) * PAGE_SIZE
+  // );
 
-  res.send(paginatedData);
+  res.send(tempData);
 });
 
 app.listen(PORT);
