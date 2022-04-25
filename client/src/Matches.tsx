@@ -1,19 +1,17 @@
 import React from "react";
 import { Match } from "./api";
 
-export const Matches = ({
-  matches,
-  search,
-}: {
-  matches: Match[];
-  search: string;
-}) => {
-  const filteredMatches = matches.filter(t =>
-    (t.borrower.user.firstName.toLowerCase() + t.borrower.user.lastName.toLowerCase()).includes(search.toLowerCase()) ||
-    (t.companyName.toLowerCase()).includes(search.toLowerCase()) ||
-    (t.borrower.user.email.toLowerCase()).includes(search.toLowerCase())
 
-  );
+
+const SingleMatch = ({ match, approved, setApproved, declined, setDeclined }
+  : {
+    match: Match;
+    approved: number;
+    setApproved: Function;
+    declined: number;
+    setDeclined: Function;
+  }) => {
+
 
   const cerditStatus = (score: number) => {
     if (score >= 679) {
@@ -25,45 +23,82 @@ export const Matches = ({
   }
 
   return (
+    <li className="match">
+      <h5 className="title">{match.companyName}</h5>
+      <div className="matchData">
+        <div>
+          <p className="userDate">
+            <b>Full Name:</b> {match.borrower.user.firstName}{" "}
+            {match.borrower.user.lastName}
+          </p>
+          <p className="userDate">
+            <b>Email:</b> {match.borrower.user.email}
+          </p>
+          <p className="userDate">
+            <b>Amount Request: </b> {match.amountReq}
+          </p>
+          <p className="userDate">
+            <b>Balance: </b> {match.borrower.financeData.balance}{" "}
+            {match.borrower.financeData.currency}
+          </p>
+          <p className={cerditStatus(match.borrower.creditScore)}>
+            <b>Credit score: </b> {cerditStatus(match.borrower.creditScore)}
+          </p>
+        </div>
+      </div>
+      <div>
+        <button onClick={() => {
+          setApproved(approved + 1);
+          console.log(approved)
+        }}>Approve</button>
+        <button onClick={() => setDeclined(declined + 1)}>Decline</button>
+      </div>
+      <footer>
+        <div className="meta-data">
+          Created At {new Date(match.creationTime).toLocaleString()}
+        </div>
+      </footer>
+    </li >)
+
+}
+
+
+export const Matches = ({
+  matches,
+  search,
+  approved,
+  setApproved,
+  declined,
+  setDeclined,
+}: {
+  matches: Match[];
+  search: string;
+  approved: number;
+  setApproved: Function;
+  declined: number;
+  setDeclined: Function
+}) => {
+
+  // const [approved, setApproved] = React.useState<number>(0)
+
+  const filteredMatches = matches.filter(t =>
+    (t.borrower.user.firstName.toLowerCase() + t.borrower.user.lastName.toLowerCase()).includes(search.toLowerCase()) ||
+    (t.companyName.toLowerCase()).includes(search.toLowerCase()) ||
+    (t.borrower.user.email.toLowerCase()).includes(search.toLowerCase())
+
+  );
+
+
+
+  return (
     <>
       {matches ? (
         <div className="results">Showing {matches.length} results</div>
       ) : null}
       <ul className="matches">
-        {filteredMatches.map((match) => (
-          <li key={match.id} className="match">
-            <h5 className="title">{match.companyName}</h5>
-            <div className="matchData">
-              <div>
-                <p className="userDate">
-                  <b>Full Name:</b> {match.borrower.user.firstName}{" "}
-                  {match.borrower.user.lastName}
-                </p>
-                <p className="userDate">
-                  <b>Email:</b> {match.borrower.user.email}
-                </p>
-                <p className="userDate">
-                  <b>Amount Request: </b> {match.amountReq}
-                </p>
-                <p className="userDate">
-                  <b>Balance: </b> {match.borrower.financeData.balance}{" "}
-                  {match.borrower.financeData.currency}
-                </p>
-                <p className={match.borrower.creditScore >= 679 ? "scoreA" : (match.borrower.creditScore < 579 ? "scoreC" : "scoreB")}>
-                  <b>Credit score: </b> {cerditStatus(match.borrower.creditScore)}
-                </p>
-              </div>
-            </div>
-            <div>
-              <button>Approve</button>
-              <button>Decline</button>
-            </div>
-            <footer>
-              <div className="meta-data">
-                Created At {new Date(match.creationTime).toLocaleString()}
-              </div>
-            </footer>
-          </li>
+        {filteredMatches.map(match => (<SingleMatch match={match} key={match.id}
+          approved={approved} setApproved={setApproved} declined={declined} setDeclined={setDeclined} />
+
         ))}
       </ul></>
   );

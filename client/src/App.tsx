@@ -6,6 +6,10 @@ import { createApiClient, Match } from "./api";
 export type AppState = {
   matches?: Match[];
   search: string;
+  approved: string;
+  setApproved: Function;
+  declined: number;
+  setDeclined: Function;
 };
 
 const api = createApiClient();
@@ -14,6 +18,8 @@ const App = () => {
 
   const [search, setSearch] = React.useState<string>("");
   const [matches, setMatches] = React.useState<Match[]>([]);
+  const [approved, setApproved] = React.useState<number>(0)
+  const [declined, setDeclined] = React.useState<number>(0)
 
   React.useEffect(() => {
     async function fetchMatches() {
@@ -54,7 +60,7 @@ const App = () => {
         />
       </header>
       {matches ? (
-        <Matches matches={matches} search={search} />
+        <Matches matches={matches} search={search} approved={approved} setApproved={setApproved} declined={declined} setDeclined={setDeclined} />
       ) : (
         <h2>Loading...</h2>
       )}

@@ -119,7 +119,7 @@ body .matches .match footer .meta-data {
   flex-shrink: 0;
 }
 
-.scoreA {
+.A {
   margin: 5px 0;
   font-size: 14px;
   font-weight: 400;
@@ -127,7 +127,7 @@ body .matches .match footer .meta-data {
   color: green;
 }
 
-.scoreB {
+.B {
   margin: 5px 0;
   font-size: 14px;
   font-weight: 400;
@@ -135,7 +135,7 @@ body .matches .match footer .meta-data {
   color: #ffff33;
 }
 
-.scoreC {
+.C {
   margin: 5px 0;
   font-size: 14px;
   font-weight: 400;
