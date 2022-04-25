@@ -92,7 +92,7 @@ export const Matches = ({
   // const [approved, setApproved] = React.useState<number>(0)
 
   const filteredMatches = matches.filter(t =>
-    (t.borrower.user.firstName.toLowerCase() + t.borrower.user.lastName.toLowerCase()).includes(search.toLowerCase()) ||
+    (t.borrower.user.firstName.toLowerCase() + ' ' + t.borrower.user.lastName.toLowerCase()).includes(search.toLowerCase()) ||
     (t.companyName.toLowerCase()).includes(search.toLowerCase()) ||
     (t.borrower.user.email.toLowerCase()).includes(search.toLowerCase())
 
