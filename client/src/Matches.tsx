@@ -49,7 +49,7 @@ export const Matches = ({
                   <b>Balance: </b> {match.borrower.financeData.balance}{" "}
                   {match.borrower.financeData.currency}
                 </p>
-                <p className="userDate">
+                <p className={match.borrower.creditScore >= 679 ? "scoreA" : (match.borrower.creditScore < 579 ? "scoreC" : "scoreB")}>
                   <b>Credit score: </b> {cerditStatus(match.borrower.creditScore)}
                 </p>
               </div>
