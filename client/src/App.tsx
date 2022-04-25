@@ -5,6 +5,7 @@ import { createApiClient, Match } from "./api";
 
 export type AppState = {
   matches?: Match[];
+  setMatches: Function;
   search: string;
   approved: string;
   setApproved: Function;
@@ -60,7 +61,9 @@ const App = () => {
         />
       </header>
       {matches ? (
-        <Matches matches={matches} search={search} approved={approved} setApproved={setApproved} declined={declined} setDeclined={setDeclined} />
+        <Matches matches={matches} search={search} approved={approved} setApproved={setApproved}
+          declined={declined} setDeclined={setDeclined}
+          setMatches={setMatches} />
       ) : (
         <h2>Loading...</h2>
       )}

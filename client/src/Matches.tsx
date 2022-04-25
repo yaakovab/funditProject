@@ -3,13 +3,15 @@ import { Match } from "./api";
 
 
 
-const SingleMatch = ({ match, approved, setApproved, declined, setDeclined }
+const SingleMatch = ({ match, approved, setApproved, declined, setDeclined, matches, setMatches }
   : {
     match: Match;
     approved: number;
     setApproved: Function;
     declined: number;
     setDeclined: Function;
+    matches: Match[];
+    setMatches: Function;
   }) => {
 
 
@@ -47,11 +49,17 @@ const SingleMatch = ({ match, approved, setApproved, declined, setDeclined }
         </div>
       </div>
       <div>
-        <button onClick={() => {
+        <button className="btn" onClick={() => {
           setApproved(approved + 1);
-          console.log(approved)
+          console.log(approved);
+          setMatches(matches.filter(m => m.id !== match.id))
         }}>Approve</button>
-        <button onClick={() => setDeclined(declined + 1)}>Decline</button>
+        <button onClick={() => {
+          setDeclined(declined + 1);
+          setMatches(matches.filter(m => m.id !== match.id))
+        }}>
+          Decline
+        </button>
       </div>
       <footer>
         <div className="meta-data">
@@ -65,6 +73,7 @@ const SingleMatch = ({ match, approved, setApproved, declined, setDeclined }
 
 export const Matches = ({
   matches,
+  setMatches,
   search,
   approved,
   setApproved,
@@ -72,6 +81,7 @@ export const Matches = ({
   setDeclined,
 }: {
   matches: Match[];
+  setMatches: Function;
   search: string;
   approved: number;
   setApproved: Function;
@@ -97,7 +107,8 @@ export const Matches = ({
       ) : null}
       <ul className="matches">
         {filteredMatches.map(match => (<SingleMatch match={match} key={match.id}
-          approved={approved} setApproved={setApproved} declined={declined} setDeclined={setDeclined} />
+          approved={approved} setApproved={setApproved} declined={declined} setDeclined={setDeclined}
+          matches={matches} setMatches={setMatches} />
 
         ))}
       </ul></>
