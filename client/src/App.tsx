@@ -9,15 +9,19 @@ export type AppState = {
 };
 
 const api = createApiClient();
+
 const App = () => {
+
   const [search, setSearch] = React.useState<string>("");
   const [matches, setMatches] = React.useState<Match[]>([]);
+
   React.useEffect(() => {
     async function fetchMatches() {
       setMatches(await api.getMatches());
     }
     fetchMatches();
   }, []);
+
   let searchDebounce: any;
   const onSearch = (val: string, newPage?: number) => {
     clearTimeout(searchDebounce);
@@ -25,6 +29,20 @@ const App = () => {
       setSearch(val);
     }, 300);
   };
+
+  let matchesToShow = matches
+
+  if (search !== '') {
+    matchesToShow = matches.filter(t => {
+      (
+        t.borrower.user.firstName.toLowerCase() +
+        t.borrower.user.lastName.toLowerCase()
+      ).includes(search.toLowerCase())
+        || (t.companyName.toLowerCase()).includes(search.toLowerCase())
+    })
+  }
+
+
   return (
     <main>
       <h1>Matches List</h1>
@@ -35,9 +53,6 @@ const App = () => {
           onChange={(e) => onSearch(e.target.value)}
         />
       </header>
-      {matches ? (
-        <div className="results">Showing {matches.length} results</div>
-      ) : null}
       {matches ? (
         <Matches matches={matches} search={search} />
       ) : (
