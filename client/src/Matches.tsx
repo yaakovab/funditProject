@@ -3,6 +3,7 @@ import { Match } from "./api";
 
 
 
+
 const SingleMatch = ({ match, approved, setApproved, declined, setDeclined, matches, setMatches }
   : {
     match: Match;
@@ -49,12 +50,14 @@ const SingleMatch = ({ match, approved, setApproved, declined, setDeclined, matc
         </div>
       </div>
       <div>
-        <button className="btn" onClick={() => {
+        <button type="button" className="btn btn-light" onClick={() => {
           setApproved(approved + 1);
           console.log(approved);
           setMatches(matches.filter(m => m.id !== match.id))
-        }}>Approve</button>
-        <button onClick={() => {
+        }}>
+          Approve
+        </button>
+        <button type="button" onClick={() => {
           setDeclined(declined + 1);
           setMatches(matches.filter(m => m.id !== match.id))
         }}>

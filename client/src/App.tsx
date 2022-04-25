@@ -1,7 +1,9 @@
 import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import { Matches } from "./Matches";
 import { createApiClient, Match } from "./api";
+
 
 export type AppState = {
   matches?: Match[];
