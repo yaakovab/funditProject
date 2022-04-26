@@ -50,14 +50,14 @@ const SingleMatch = ({ match, approved, setApproved, declined, setDeclined, matc
         </div>
       </div>
       <div>
-        <button type="button" className="btn btn-light" onClick={() => {
+        <button type="button" className="btn btn-outline-light" onClick={() => {
           setApproved(approved + 1);
           console.log(approved);
           setMatches(matches.filter(m => m.id !== match.id))
         }}>
           Approve
         </button>
-        <button type="button" onClick={() => {
+        <button type="button" className="btn btn-outline-dark" onClick={() => {
           setDeclined(declined + 1);
           setMatches(matches.filter(m => m.id !== match.id))
         }}>
@@ -97,7 +97,8 @@ export const Matches = ({
   const filteredMatches = matches.filter(t =>
     (t.borrower.user.firstName.toLowerCase() + ' ' + t.borrower.user.lastName.toLowerCase()).includes(search.toLowerCase()) ||
     (t.companyName.toLowerCase()).includes(search.toLowerCase()) ||
-    (t.borrower.user.email.toLowerCase()).includes(search.toLowerCase())
+    (t.borrower.user.email.toLowerCase()).includes(search.toLowerCase()) ||
+    (t.labels ? (t.labels.some(label => label.toLowerCase().includes(search.toLowerCase()))) : false)
 
   );
 

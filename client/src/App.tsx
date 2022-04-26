@@ -32,7 +32,7 @@ const App = () => {
   }, []);
 
   let searchDebounce: any;
-  const onSearch = (val: string, newPage?: number) => {
+  const onSearch = (val: string) => {
     clearTimeout(searchDebounce);
     searchDebounce = setTimeout(async () => {
       setSearch(val);
