@@ -4,14 +4,14 @@ import { Match } from "./api";
 
 
 
-const SingleMatch = ({ match, approved, setApproved, declined, setDeclined, matches, setMatches }
+const SingleMatch = ({ match, approved, setApproved, declined, setDeclined, matchesToShow, setMatches }
   : {
     match: Match;
     approved: number;
     setApproved: Function;
     declined: number;
     setDeclined: Function;
-    matches: Match[];
+    matchesToShow: Match[];
     setMatches: Function;
   }) => {
 
@@ -53,13 +53,13 @@ const SingleMatch = ({ match, approved, setApproved, declined, setDeclined, matc
         <button type="button" className="btn btn-outline-light" onClick={() => {
           setApproved(approved + 1);
           console.log(approved);
-          setMatches(matches.filter(m => m.id !== match.id))
+          setMatches(matchesToShow.filter(m => m.id !== match.id))
         }}>
           Approve
         </button>
         <button type="button" className="btn btn-outline-dark" onClick={() => {
           setDeclined(declined + 1);
-          setMatches(matches.filter(m => m.id !== match.id))
+          setMatches(matchesToShow.filter(m => m.id !== match.id))
         }}>
           Decline
         </button>
@@ -75,7 +75,7 @@ const SingleMatch = ({ match, approved, setApproved, declined, setDeclined, matc
 
 
 export const Matches = ({
-  matches,
+  matchesToShow,
   setMatches,
   search,
   approved,
@@ -83,7 +83,7 @@ export const Matches = ({
   declined,
   setDeclined,
 }: {
-  matches: Match[];
+  matchesToShow: Match[];
   setMatches: Function;
   search: string;
   approved: number;
@@ -92,9 +92,9 @@ export const Matches = ({
   setDeclined: Function
 }) => {
 
-  // const [approved, setApproved] = React.useState<number>(0)
 
-  const filteredMatches = matches.filter(t =>
+
+  const filteredMatches = matchesToShow.filter(t =>
     (t.borrower.user.firstName.toLowerCase() + ' ' + t.borrower.user.lastName.toLowerCase()).includes(search.toLowerCase()) ||
     (t.companyName.toLowerCase()).includes(search.toLowerCase()) ||
     (t.borrower.user.email.toLowerCase()).includes(search.toLowerCase()) ||
@@ -106,13 +106,13 @@ export const Matches = ({
 
   return (
     <>
-      {matches ? (
-        <div className="results">Showing {matches.length} results</div>
+      {matchesToShow ? (
+        <div className="results">Showing {matchesToShow.length} results</div>
       ) : null}
       <ul className="matches">
         {filteredMatches.map(match => (<SingleMatch match={match} key={match.id}
           approved={approved} setApproved={setApproved} declined={declined} setDeclined={setDeclined}
-          matches={matches} setMatches={setMatches} />
+          matchesToShow={matchesToShow} setMatches={setMatches} />
 
         ))}
       </ul></>

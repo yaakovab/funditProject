@@ -6,7 +6,7 @@ import { createApiClient, Match } from "./api";
 
 
 export type AppState = {
-  matches?: Match[];
+  matchesToShow?: Match[];
   setMatches: Function;
   search: string;
   approved: string;
@@ -42,13 +42,10 @@ const App = () => {
   let matchesToShow = matches
 
   if (search !== '') {
-    matchesToShow = matches.filter(t => {
-      (
-        t.borrower.user.firstName.toLowerCase() +
-        t.borrower.user.lastName.toLowerCase()
-      ).includes(search.toLowerCase())
-        || (t.companyName.toLowerCase()).includes(search.toLowerCase())
-    })
+    matchesToShow = matches.filter(t => (t.borrower.user.firstName.toLowerCase() + ' ' + t.borrower.user.lastName.toLowerCase()).includes(search.toLowerCase()) ||
+      (t.companyName.toLowerCase()).includes(search.toLowerCase()) ||
+      (t.borrower.user.email.toLowerCase()).includes(search.toLowerCase()) ||
+      (t.labels ? (t.labels.some(label => label.toLowerCase().includes(search.toLowerCase()))) : false))
   }
 
 
@@ -63,7 +60,7 @@ const App = () => {
         />
       </header>
       {matches ? (
-        <Matches matches={matches} search={search} approved={approved} setApproved={setApproved}
+        <Matches matchesToShow={matchesToShow} search={search} approved={approved} setApproved={setApproved}
           declined={declined} setDeclined={setDeclined}
           setMatches={setMatches} />
       ) : (

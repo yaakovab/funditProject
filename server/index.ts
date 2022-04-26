@@ -7,7 +7,7 @@ const app = express();
 
 const PORT = 8888;
 
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 app.use((_, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
