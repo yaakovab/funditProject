@@ -1,8 +1,9 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
-import { Matches } from "./Matches";
+import { Header } from "./components/Header";
 import { createApiClient, Match } from "./api";
+import { Main } from "./components/Main";
 
 
 export type AppState = {
@@ -50,23 +51,24 @@ const App = () => {
 
 
   return (
-    <main>
-      <h1>Matches List</h1>
-      <header>
-        <input
-          type="search"
-          placeholder="Search..."
-          onChange={(e) => onSearch(e.target.value)}
-        />
-      </header>
-      {matches ? (
-        <Matches matchesToShow={matchesToShow} search={search} approved={approved} setApproved={setApproved}
-          declined={declined} setDeclined={setDeclined}
-          setMatches={setMatches} />
-      ) : (
-        <h2>Loading...</h2>
-      )}
-    </main>
+    <>
+      <Header header='Matches List' />
+      <Main type="search"
+        placeHolder="Search..."
+        onSearch={onSearch}
+        matches={matches}
+        matchesToShow={matchesToShow}
+        search={search}
+        approved={approved}
+        setApproved={setApproved}
+        setMatches={setMatches}
+        declined={declined}
+        setDeclined={setDeclined} />
+    </>
   );
 };
+
+
+
+
 export default App;
