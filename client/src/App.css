@@ -115,7 +115,7 @@ body .matches .match footer {
   justify-content: space-between;
 }
 
-body .matches .match footer .meta-data {
+body .matches .match .meta-data {
   color: #7a92a5;
   font-size: 12px;
   margin: 10px 0;

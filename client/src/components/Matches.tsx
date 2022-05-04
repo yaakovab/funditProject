@@ -31,9 +31,14 @@ export const Matches = ({
 
   );
 
-  const handleApproveButtonClick = (id: any) => {
+  const handleApproveButtonClick = (id: string) => {
     setApproved(approved + 1);
     console.log(approved);
+    setMatches(matchesToShow.filter(m => m.id !== id))
+  }
+
+  const handleDeclineButtonClick = (id: string) => {
+    setDeclined(declined + 1);
     setMatches(matchesToShow.filter(m => m.id !== id))
   }
 
@@ -53,7 +58,8 @@ export const Matches = ({
           setDeclined={setDeclined}
           matchesToShow={matchesToShow}
           setMatches={setMatches}
-          handleApproveButtonClick={handleApproveButtonClick} />
+          handleApproveButtonClick={handleApproveButtonClick}
+          handleDeclineButtonClick={handleDeclineButtonClick} />
         ))}
       </ul></>
   );

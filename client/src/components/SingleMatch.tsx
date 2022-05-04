@@ -1,7 +1,12 @@
 import React from "react";
 import { Match } from "../api";
+import { Button } from "./Button";
+import { Footer } from "./Footer";
 
-export const SingleMatch = ({ match, approved, setApproved, declined, setDeclined, matchesToShow, setMatches, handleApproveButtonClick }
+export const SingleMatch = ({
+    match,
+    handleApproveButtonClick,
+    handleDeclineButtonClick }
     : {
         match: Match;
         approved: number;
@@ -10,7 +15,8 @@ export const SingleMatch = ({ match, approved, setApproved, declined, setDecline
         setDeclined: Function;
         matchesToShow: Match[];
         setMatches: Function;
-        handleApproveButtonClick: Function
+        handleApproveButtonClick: Function;
+        handleDeclineButtonClick: Function;
     }) => {
 
 
@@ -50,29 +56,12 @@ export const SingleMatch = ({ match, approved, setApproved, declined, setDecline
                 </div>
             </div>
             <div>
-                <Button type="button" className="btn btn-light" match={match} handleApproveButtonClick={handleApproveButtonClick} />
-                <button type="button" className="btn btn-outline-dark" onClick={() => {
-                    setDeclined(declined + 1);
-                    setMatches(matchesToShow.filter(m => m.id !== match.id))
-                }}>
-                    Decline
-                </button>
+                <Button text="Approve" type="button" className="btn btn-light" match={match} handleButtonClick={handleApproveButtonClick} />
+                <Button text="Decline" type="button" className="btn btn-outline-dark" match={match} handleButtonClick={handleDeclineButtonClick} />
             </div>
-            <footer>
-                <div className="meta-data">
-                    Created At {new Date(match.creationTime).toLocaleString()}
-                </div>
-            </footer>
+            <Footer content={`Created At ${new Date(match.creationTime).toLocaleString()}`} />
         </li >)
 
 }
 
 
-const Button = ({ className, handleApproveButtonClick, match }:
-    { type: string, className: string, handleApproveButtonClick: Function, match: Match }) => {
-    return (
-        <button className={className} onClick={() => handleApproveButtonClick(match.id)}>
-            Approve
-        </button>
-    )
-}
