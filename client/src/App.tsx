@@ -7,7 +7,7 @@ import { Main } from "./components/Main";
 
 
 export type AppState = {
-  matchesToShow?: Match[];
+  matches: Match[];
   setMatches: Function;
   search: string;
   approved: string;
@@ -28,8 +28,10 @@ const App = () => {
   React.useEffect(() => {
     async function fetchMatches() {
       setMatches(await api.getMatches());
+
     }
     fetchMatches();
+
   }, []);
 
   let searchDebounce: any;
@@ -42,12 +44,16 @@ const App = () => {
 
   let matchesToShow = matches
 
+
   if (search !== '') {
     matchesToShow = matches.filter(t => (t.borrower.user.firstName.toLowerCase() + ' ' + t.borrower.user.lastName.toLowerCase()).includes(search.toLowerCase()) ||
       (t.companyName.toLowerCase()).includes(search.toLowerCase()) ||
       (t.borrower.user.email.toLowerCase()).includes(search.toLowerCase()) ||
       (t.labels ? (t.labels.some(label => label.toLowerCase().includes(search.toLowerCase()))) : false))
+
   }
+
+
 
 
   return (

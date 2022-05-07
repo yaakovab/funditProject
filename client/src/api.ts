@@ -35,7 +35,8 @@ export const createApiClient = (): ApiClient => {
     getMatches: () => {
       return axios
         .get(`http://localhost:8888/api/match`)
-        .then((res) => res.data);
+        .then((res) => res.data).catch((err) => { console.log(typeof err) });
+
     },
   };
 };

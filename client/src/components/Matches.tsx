@@ -23,17 +23,19 @@ export const Matches = ({
 
 
 
-  const filteredMatches = matchesToShow.filter(t =>
-    (t.borrower.user.firstName.toLowerCase() + ' ' + t.borrower.user.lastName.toLowerCase()).includes(search.toLowerCase()) ||
-    (t.companyName.toLowerCase()).includes(search.toLowerCase()) ||
-    (t.borrower.user.email.toLowerCase()).includes(search.toLowerCase()) ||
-    (t.labels ? (t.labels.some(label => label.toLowerCase().includes(search.toLowerCase()))) : false)
+  const filteredMatches = matchesToShow.filter((t) => {
+
+    return (t.borrower.user.firstName.toLowerCase() + ' ' + t.borrower.user.lastName.toLowerCase()).includes(search.toLowerCase()) ||
+      (t.companyName.toLowerCase()).includes(search.toLowerCase()) ||
+      (t.borrower.user.email.toLowerCase()).includes(search.toLowerCase()) ||
+      (t.labels ? (t.labels.some(label => label.toLowerCase().includes(search.toLowerCase()))) : false)
+  }
 
   );
 
   const handleApproveButtonClick = (id: string) => {
     setApproved(approved + 1);
-    console.log(approved);
+    // console.log(approved);
     setMatches(matchesToShow.filter(m => m.id !== id))
   }
 

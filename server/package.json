@@ -2,6 +2,7 @@
   "name": "@fundit-exam/server",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "ts-node-dev index.ts",
     "d": "ts-node index.ts"
@@ -21,6 +22,7 @@
     "googleapis": "^39.2.0",
     "ts-node": "^8.3.0",
     "ts-node-dev": "^1.0.0-pre.41",
+    "dotenv": "^16.0.0",
     "typescript": "^3.5.3"
   }
 }

@@ -1,0 +1,10 @@
+const matchRouter = require('express').Router();
+const tempData = require('../temp-data').tempData
+
+
+matchRouter.get("/", (req, res) => {
+    res.send(tempData);
+});
+
+module.exports = matchRouter;
+

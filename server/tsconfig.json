@@ -7,6 +7,7 @@
       "esnext"
     ],
     "allowJs": true,
+    "jsx": "react",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -16,10 +17,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-	"noEmit": true
+    "noEmit": true
   },
   "include": [
-	  "types.d.ts",
-	  "*.ts"
-	]
+    "types.d.ts",
+    "*.ts"
+  ]
 }

@@ -33,27 +33,27 @@ export const SingleMatch = ({
 
     return (
         <li className="match">
-            <h5 className="title">{match.companyName}</h5>
+            <h5 className="title">
+                {match.companyName}
+            </h5>
             <div className="matchData">
-                <div>
-                    <p className="userDate">
-                        <b>Full Name:</b> {match.borrower.user.firstName}{" "}
-                        {match.borrower.user.lastName}
-                    </p>
-                    <p className="userDate">
-                        <b>Email:</b> {match.borrower.user.email}
-                    </p>
-                    <p className="userDate">
-                        <b>Amount Request: </b> {match.amountReq}
-                    </p>
-                    <p className="userDate">
-                        <b>Balance: </b> {match.borrower.financeData.balance}{" "}
-                        {match.borrower.financeData.currency}
-                    </p>
-                    <p className={cerditStatus(match.borrower.creditScore)}>
-                        <b>Credit score: </b> {cerditStatus(match.borrower.creditScore)}
-                    </p>
-                </div>
+                <p className="userDate">
+                    <b>Full Name:</b> {match.borrower.user.firstName}{" "}
+                    {match.borrower.user.lastName}
+                </p>
+                <p className="userDate">
+                    <b>Email:</b> {match.borrower.user.email}
+                </p>
+                <p className="userDate">
+                    <b>Amount Request: </b> {match.amountReq}
+                </p>
+                <p className="userDate">
+                    <b>Balance: </b> {match.borrower.financeData.balance}{" "}
+                    {match.borrower.financeData.currency}
+                </p>
+                <p className={cerditStatus(match.borrower.creditScore)}>
+                    <b>Credit score: </b> {cerditStatus(match.borrower.creditScore)}
+                </p>
             </div>
             <div>
                 <Button text="Approve" type="button" className="btn btn-light" match={match} handleButtonClick={handleApproveButtonClick} />
